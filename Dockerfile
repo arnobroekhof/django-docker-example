@@ -58,15 +58,13 @@ WORKDIR /home/app/
 COPY --from=builder /home/app .
 
 # set the permissions
-RUN chown -R app /home/app
+RUN chown -R app /home/app \
+    && chmod +x /home/app/docker-entrypoint.sh
 
 # switch to the user and set the correct environment
 USER app
-ENV PATH=$PATH:/home/app/.local/bin:/home/app/bin/
+ENV PATH=$PATH:/home/app/.local/bin:/home/app/libs/bin:/home/app/bin/
 ENV PYTHONPATH=$PYTHONPATH:/home/app/libs
 
 # set python as the entrypoint
-ENTRYPOINT ["python"]
-
-# execute the script
-CMD ["manage.py", "run_api_server"]
+ENTRYPOINT ["/home/app/docker-entrypoint.sh"]

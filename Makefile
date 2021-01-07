@@ -1,5 +1,6 @@
 GIT_COMMIT=$$(git rev-parse --short HEAD)
 IMAGE_REPO?="arnobroekhof"
+PROJECT_NAME?="example"
 
 .PHONY: image/build
 image/build:
@@ -11,7 +12,7 @@ image/push: image/build
 
 .PHONY: image/test
 image/test:	image/build
-	docker run -e API_PORT=8080 -p 8080:8080 $(IMAGE_REPO)/django-docker-example:$(GIT_COMMIT)
+	docker run -e BIND_PORT=8000 -e PROJECT_NAME=$(PROJECT_NAME) -p 8000:8000 $(IMAGE_REPO)/django-docker-example:$(GIT_COMMIT)
 
 .PHONY: dev/deps
 dev/deps:

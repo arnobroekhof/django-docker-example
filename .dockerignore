@@ -1,1 +1,6 @@
 /static
+
+db.sqlite3
+.venv
+
+**/*.pyc
