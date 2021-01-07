@@ -1,5 +1,7 @@
 # Django Docker example
 
+![Docker Build Status](https://img.shields.io/docker/build/arnobroekhof/django-docker-example) ![Docker Automated build](https://img.shields.io/docker/automated/arnobroekhof/django-docker-example)
+
 example of running a Django Application inside a Docker container
 
 ## Directory layout
